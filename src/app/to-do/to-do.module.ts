@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { JobComponent } from './components/job/job.component';
 import { InputJobComponent } from './components/input-job/input-job.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,8 +13,12 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
     InputJobComponent,
     TodoListComponent
   ],
+  exports: [
+    TodoListComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ]
 })
 export class ToDoModule { }

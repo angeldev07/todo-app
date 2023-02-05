@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ToDoModule } from './to-do/to-do.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -11,7 +11,6 @@ import { ToDoModule } from './to-do/to-do.module';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     ToDoModule
   ],
   providers: [],
