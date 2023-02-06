@@ -6,20 +6,12 @@
 
 
 <div *ngIf="allJobList.length > 0">
-    <div [ngSwitch]="selection" class="container">
-        <div *ngSwitchCase="'all'">
-            <app-job *ngFor="let job of allJobList; index as i" [job]="job" (jobDone)="update($event)"></app-job>
-        </div>
-        <div *ngSwitchCase="'doned'">
-            <app-job *ngFor="let job of done; index as i" [job]="job" (jobDone)="update($event)"></app-job>
-        </div>
-        <div *ngSwitchCase="'toDo'">
-            <app-job *ngFor="let job of toDo; index as i" [job]="job" (jobDone)="update($event)"></app-job>
-        </div>
+    <div *ngFor="let job of Jobs" >
+        <app-job [job]="job" (delete)="delete($event) " ></app-job>
     </div>
 </div>
 
-<span> {{leftItems}}  </span>
+<!-- <span> {{leftItems}}  </span> -->
 <button (click)="changeToShow('all')" >all</button>
 <button (click)="changeToShow('doned')" >doned</button>
 <button (click)="changeToShow('toDo')" >toDo</button>

@@ -5,8 +5,6 @@ import { InputJobComponent } from './components/input-job/input-job.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { FormsModule } from '@angular/forms';
 
-
-
 @NgModule({
   declarations: [
     JobComponent,

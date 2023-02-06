@@ -1,5 +1,6 @@
 <div>
-    <input type="checkbox" [(ngModel)]="job!.done" (change)="doneJob()">
+    <!-- (change)="doneJob()" -->
+    <input type="checkbox" [(ngModel)]="job!.done" >
     <span> {{ job?.description }}</span>
     <button (click)="eliminar()">x</button>
 </div>
