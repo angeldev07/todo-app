@@ -1,19 +1,40 @@
-<h1>Falta los estilos xd</h1>
+<div class="">
 
-<div>
-    <app-input-job (jobToDo)="addJob($event)" ></app-input-job>
-</div>
-
-
-<div *ngIf="allJobList.length > 0">
-    <div *ngFor="let job of Jobs" >
-        <app-job [job]="job" (delete)="delete($event) " ></app-job>
+    <div class="mb-8">
+        <h1 class="text-white text-4xl font-bold tracking-title">TODO</h1>
     </div>
-</div>
 
-<!-- <span> {{leftItems}}  </span> -->
-<button (click)="changeToShow('all')" >all</button>
-<button (click)="changeToShow('doned')" >doned</button>
-<button (click)="changeToShow('toDo')" >toDo</button>
-<button (click)="clear()"> Clear all completed</button>
+    <div class="text-color-dark">
+        <div class="mb-3">
+            <app-input-job (jobToDo)="addJob($event)" ></app-input-job>
+        </div>
+        
+        
+        <div *ngIf="Jobs.length > 0; else loggedOut ">
+            <div *ngFor="let job of Jobs" class="bg-item-dark p-4 border-[#393a4c] border-b-[1px] rounded-sm" >
+                <app-job  [job]="job" (delete)="delete($event) " ></app-job>
+            </div>
+        </div>
+        <ng-template #loggedOut>
+            <div class="bg-item-dark p-4 border-[#393a4c] border-b-[1px] rounded-sm text-center font-semibold">
+                There is nothing to do
+            </div>
+          </ng-template>
+    </div>
+
+    <div class="flex justify-between p-3 bg-item-dark text-color-dark mb-3 rounded-b-sm">
+        <span> {{itemsLeft}} </span>
+        <button (click)="clear()"> Clear Completed</button>
+    </div>
+
+    <div class="flex justify-center p-3 bg-item-dark text-color-dark rounded-md">
+        <button *ngFor="let btn of filterBtns; index as i"
+                (click)="changeToShow(btn)"
+                class="mr-4"
+                [ngClass]="selection == btn ? 'text-active': '' " > 
+                {{btn | titlecase}} 
+        </button>
+    </div>
+
+</div>
 

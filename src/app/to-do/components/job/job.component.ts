@@ -8,11 +8,14 @@ import { Job } from '../../interfaces/job.interface';
   ]
 })
 export class JobComponent {
-  @Input() job! : Job | undefined;
+  @Input() job! : Job;
   @Output() delete : EventEmitter<Job> = new EventEmitter();
 
   eliminar() {
     this.delete.emit(this.job);
   }
 
+  changeState() {
+    this.job.done = ! this.job.done
+  }
 }

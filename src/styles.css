@@ -2,3 +2,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base{
+  
+  :root{
+    /* 
+    --bg-light: #fafafa;
+    --bg-item-light: #e4e5f1;
+    --font-color-light: #d2d3db;
+    --Dark-Grayish-Blue: #9394a5;
+    --active-hover-light: #484b6a; */
+    
+    /* dark theme */
+    --dark: #181824;
+    --bg-item-dark: #25273c;
+    --color-dark: #cacde8;
+    --fc-hover: #e4e5f1;
+    --Dark-Grayish-Blue: #777a92;
+    --Very-Dark-Grayish-Blue: #4d5066;
+    --Very-Dark-Grayish-Blue: #393a4c;
+    --Check-Background: linear-gradient #57ddff to #c058f3;
+    --active: #3a7bfd;
+  }
+}

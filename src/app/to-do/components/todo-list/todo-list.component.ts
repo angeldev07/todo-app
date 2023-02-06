@@ -9,7 +9,12 @@ import { Job } from '../../interfaces/job.interface';
 })
 export class TodoListComponent {
 
-  allJobList: Job[] = [];
+  allJobList: Job[] = [{
+    description: 'Complete online JavaScript course',
+    done: false
+  }];
+
+  filterBtns: string[] = ['all','active','completed']
   selection = 'all';
 
   addJob( job: Job ){
@@ -18,6 +23,8 @@ export class TodoListComponent {
 
   changeToShow(value: string){
     this.selection = value
+    console.log(this.selection);
+    
   }
 
   clear(){
@@ -25,13 +32,17 @@ export class TodoListComponent {
   }
 
   get Jobs(){
-    if(this.selection=='doned')
+    if(this.selection=='completed')
       return  this.allJobList.filter(job => job.done)
     
-    if(this.selection == 'toDo')
+    if(this.selection == 'active')
       return  this.allJobList.filter(job => !job.done)
 
     return this.allJobList;
+  }
+
+  get itemsLeft ( ) {
+    return `${this.allJobList.filter(({done}) => !done).length} items left`
   }
 
   delete( event:Job ) {
