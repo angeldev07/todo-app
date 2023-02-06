@@ -1,12 +1,11 @@
 <div class="flex justify-between items-center">
     <div class="flex items-center">
-        <!-- <input type="checkbox" [(ngModel)]="job!.done" class="mr-2 rounded-lg"> -->
-        <button  class=" mr-3 rounded-full w-5 h-5"
+        <button  class=" check mr-3 rounded-full w-5 h-5 hover:border-[#c058f3] transition-colors"
                 [ngClass]="!job.done? 'border':'bg-gradient-to-r from-[#57ddff] to-[#c058f3]'"
                 (click)="changeState()">
             <img class="mx-auto" *ngIf="job!.done" src="assets/images/icon-check.svg" alt="">
         </button>
-        <span [ngClass]="job.done ? 'line-through':''"> {{ job.description }}</span>
+        <span [ngClass]="job.done ? 'line-through':''" > {{ job.description }}</span>
     </div>
     <button (click)="eliminar()">
         <img class="w-full" src="assets/images/icon-cross.svg" alt="boton para cerrar">

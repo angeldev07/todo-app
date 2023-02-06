@@ -4,6 +4,7 @@ import { JobComponent } from './components/job/job.component';
 import { InputJobComponent } from './components/input-job/input-job.component';
 import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    DragDropModule
   ]
 })
 export class ToDoModule { }

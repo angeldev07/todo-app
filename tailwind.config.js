@@ -10,7 +10,8 @@ module.exports = {
       },
       colors: {
         'color-dark': 'var(--color-dark)',
-        'active': 'var(--active)'
+        'active': 'var(--active)',
+        'check2': 'linear-gradient(0deg, #57ddff 0%, #c058f3 100%);',
       }, 
       backgroundImage:{
         'check': 'linear-gradient()'
@@ -21,6 +22,9 @@ module.exports = {
       },
       letterSpacing: {
         'title': '.7rem'
+      },
+      boxShadow: {
+        '3xl': '0px 18px 30px 5px rgba(0 0 0 /.75);'
       }
     },
   },

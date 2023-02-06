@@ -9,31 +9,41 @@
             <app-input-job (jobToDo)="addJob($event)" ></app-input-job>
         </div>
         
-        
-        <div *ngIf="Jobs.length > 0; else loggedOut ">
-            <div *ngFor="let job of Jobs" class="bg-item-dark p-4 border-[#393a4c] border-b-[1px] rounded-sm" >
-                <app-job  [job]="job" (delete)="delete($event) " ></app-job>
+        <!-- Contenedor de la lista  -->
+        <div class="shadow-3xl mb-6">
+            <div *ngIf="Jobs.length > 0; else loggedOut " 
+                cdkDropList (cdkDropListDropped)="drop($event)" 
+                class="listCont bg-item-dark" >
+                <div cdkDrag *ngFor="let job of Jobs" 
+                     class="itemDrag bg-item-dark p-4 border-[#393a4c] border-b-[1px] rounded-sm text-color-dark" >
+                    <app-job  [job]="job" (delete)="delete($event) " ></app-job>
+                </div>
+            </div>
+            <ng-template #loggedOut>
+                <div class="bg-item-dark p-4 border-[#393a4c] border-b-[1px] rounded-sm text-center font-semibold">
+                    There is nothing to do
+                </div>
+            </ng-template>
+            
+            <div class="flex justify-between py-4 px-5 bg-item-dark text-color-dark  rounded-b-sm">
+                <span> {{itemsLeft}} </span>
+                <button class="hover:text-[#777a92] transition-colors" (click)="clear()"> Clear Completed</button>
             </div>
         </div>
-        <ng-template #loggedOut>
-            <div class="bg-item-dark p-4 border-[#393a4c] border-b-[1px] rounded-sm text-center font-semibold">
-                There is nothing to do
-            </div>
-          </ng-template>
+        
+        <div class="flex justify-center p-3 bg-item-dark text-color-dark rounded-md shadow-xl">
+            <button *ngFor="let btn of filterBtns; index as i"
+                    (click)="changeToShow(btn)"
+                    class="mr-4 transition-colors"
+                    [ngClass]="selection == btn ? 'text-active': ' hover:text-[#777a92]' " > 
+                    {{btn | titlecase}} 
+            </button>
+        </div>
+
     </div>
 
-    <div class="flex justify-between p-3 bg-item-dark text-color-dark mb-3 rounded-b-sm">
-        <span> {{itemsLeft}} </span>
-        <button (click)="clear()"> Clear Completed</button>
-    </div>
-
-    <div class="flex justify-center p-3 bg-item-dark text-color-dark rounded-md">
-        <button *ngFor="let btn of filterBtns; index as i"
-                (click)="changeToShow(btn)"
-                class="mr-4"
-                [ngClass]="selection == btn ? 'text-active': '' " > 
-                {{btn | titlecase}} 
-        </button>
+    <div class="text-center mt-10 mb-5">
+        <span class="text-[#777a92] font-semibold">Drag and Drop to reorder list</span>
     </div>
 
 </div>
