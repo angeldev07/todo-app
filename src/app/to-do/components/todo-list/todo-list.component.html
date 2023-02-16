@@ -11,16 +11,16 @@
         
         <!-- Contenedor de la lista  -->
         <div class="shadow-3xl mb-6">
-            <div *ngIf="Jobs.length > 0; else loggedOut " 
+            <div *ngIf="auxListJob.length > 0; else loggedOut " 
                 cdkDropList (cdkDropListDropped)="drop($event)" 
                 class="listCont bg-item-dark" >
-                <div cdkDrag *ngFor="let job of Jobs" 
-                     class="itemDrag bg-item-dark p-4 border-[#393a4c] border-b-[1px] rounded-sm text-color-dark" >
+                <div cdkDrag *ngFor="let job of auxListJob" 
+                     class="itemDrag bg-item-dark p-4 border-[#393a4c] border-b rounded-sm text-color-dark" >
                     <app-job  [job]="job" (delete)="delete($event) " ></app-job>
                 </div>
             </div>
             <ng-template #loggedOut>
-                <div class="bg-item-dark p-4 border-[#393a4c] border-b-[1px] rounded-sm text-center font-semibold">
+                <div class="bg-item-dark p-4 border-[#393a4c] border-b rounded-sm text-center font-semibold">
                     There is nothing to do
                 </div>
             </ng-template>

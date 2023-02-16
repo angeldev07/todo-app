@@ -36,18 +36,21 @@ import { Job } from '../../interfaces/job.interface';
 export class TodoListComponent {
 
   allJobList: Job[] = [];
+  auxListJob: Job[] = []
 
   filterBtns: string[] = ['all','active','completed']
   selection = 'all';
 
-  get Jobs(){
+  getJobs(){
     if(this.selection=='completed')
-      return  this.allJobList.filter(job => job.done)
+      this.auxListJob = this.allJobList.filter(job => job.done)
     
     if(this.selection == 'active')
-      return  this.allJobList.filter(job => !job.done)
-
-    return this.allJobList;
+      this.auxListJob = this.allJobList.filter(job => !job.done)
+    
+    if(this.selection == 'all')
+      this.auxListJob = [...this.allJobList]
+    
   }
 
   get itemsLeft ( ) {
@@ -56,12 +59,12 @@ export class TodoListComponent {
 
   addJob( job: Job ){
     this.allJobList.push(job)
+    this.getJobs()
   }
 
   changeToShow(value: string){
     this.selection = value
-    console.log(this.selection);
-    
+    this.getJobs();
   }
 
   clear(){
@@ -73,7 +76,7 @@ export class TodoListComponent {
   }
 
   drop( event: CdkDragDrop<Job[]> ){
-    moveItemInArray(this.allJobList, event.previousIndex, event.currentIndex);    
+    moveItemInArray(this.auxListJob, event.previousIndex, event.currentIndex);    
   }
 
 

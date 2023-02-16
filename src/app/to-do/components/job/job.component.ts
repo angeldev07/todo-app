@@ -18,4 +18,5 @@ export class JobComponent {
   changeState() {
     this.job.done = ! this.job.done
   }
+
 }
