@@ -1,2 +1,9 @@
-<input type="text" placeholder="Create a new todo..." [(ngModel)]="value" (keyup.enter)="saveJob()"
-       class="block w-full p-3 rounded-md bg-item-dark outline-none" >
+<div class="flex items-center rounded-md bg-item-dark px-4 py-2">
+       <button  class=" check rounded-full w-5 h-5 mx-auto hover:border-[#c058f3] transition-colors"
+                [ngClass]="!done? 'border':'bg-gradient-to-r from-[#57ddff] to-[#c058f3]'"
+                (click)="changeState()">
+                <img class="mx-auto" *ngIf="done" src="assets/images/icon-check.svg" alt="icono de check">
+       </button>
+       <input type="text" placeholder="Create a new todo..." [(ngModel)]="value" (keyup.enter)="saveJob()"
+              class="block w-full p-3 rounded-md bg-item-dark outline-none" >
+</div>

@@ -3,7 +3,7 @@
         <button  class=" check mr-3 rounded-full w-5 h-5 hover:border-[#c058f3] transition-colors"
                 [ngClass]="!job.done? 'border':'bg-gradient-to-r from-[#57ddff] to-[#c058f3]'"
                 (click)="changeState()">
-            <img class="mx-auto" *ngIf="job!.done" src="assets/images/icon-check.svg" alt="">
+            <img class="mx-auto" *ngIf="job!.done" src="assets/images/icon-check.svg" alt="icono de check">
         </button>
         <span [ngClass]="job.done ? 'line-through':''" > {{ job.description }}</span>
     </div>
