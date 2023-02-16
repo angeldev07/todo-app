@@ -1,5 +1,5 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Job } from '../../interfaces/job.interface';
 
 @Component({
@@ -33,24 +33,32 @@ import { Job } from '../../interfaces/job.interface';
     `
   ]
 })
-export class TodoListComponent {
-
+export class TodoListComponent implements OnInit{
+  
+  
   allJobList: Job[] = [];
-  auxListJob: Job[] = []
-
   filterBtns: string[] = ['all','active','completed']
   selection = 'all';
 
-  getJobs(){
+  ngOnInit(): void {
+    // Comprobamos si hay algo en el localStorage para cargarlo
+    if(localStorage.getItem('jobs'))
+      this.allJobList = JSON.parse(localStorage.getItem('jobs')!);
+    
+    if(localStorage.getItem('filter')){
+      this.selection = localStorage.getItem('filter')!;
+
+    }
+  }
+
+  get Jobs(){
     if(this.selection=='completed')
-      this.auxListJob = this.allJobList.filter(job => job.done)
+      return  this.allJobList.filter(job => job.done)
     
     if(this.selection == 'active')
-      this.auxListJob = this.allJobList.filter(job => !job.done)
-    
-    if(this.selection == 'all')
-      this.auxListJob = [...this.allJobList]
-    
+      return  this.allJobList.filter(job => !job.done)
+
+    return this.allJobList;
   }
 
   get itemsLeft ( ) {
@@ -58,25 +66,30 @@ export class TodoListComponent {
   }
 
   addJob( job: Job ){
+    // Agregamos el trabajo a la lista
     this.allJobList.push(job)
-    this.getJobs()
+    // agregamos al localStorage por si se recarga la lista 
+    localStorage.setItem('jobs', JSON.stringify(this.allJobList))
   }
 
   changeToShow(value: string){
     this.selection = value
-    this.getJobs();
+    localStorage.setItem('filter', this.selection)
   }
 
   clear(){
     this.allJobList = this.allJobList.filter(job => !job.done)
+    localStorage.setItem('jobs', JSON.stringify(this.allJobList))
   }
 
-  delete( event:Job ) {
-    this.allJobList = this.allJobList.filter( job => job.description != event.description )
+  delete( index: number  ) {
+    if(index >= 0 )
+      this.allJobList.splice(index,1);
+    localStorage.setItem('jobs',JSON.stringify(this.allJobList))
   }
 
   drop( event: CdkDragDrop<Job[]> ){
-    moveItemInArray(this.auxListJob, event.previousIndex, event.currentIndex);    
+    moveItemInArray(this.allJobList, event.previousIndex, event.currentIndex);    
   }
 
 

@@ -14,9 +14,9 @@
             <div *ngIf="auxListJob.length > 0; else loggedOut " 
                 cdkDropList (cdkDropListDropped)="drop($event)" 
                 class="listCont bg-item-dark" >
-                <div cdkDrag *ngFor="let job of auxListJob" 
+                <div cdkDrag *ngFor="let job of auxListJob; index as i" 
                      class="itemDrag bg-item-dark p-4 border-[#393a4c] border-b rounded-sm text-color-dark" >
-                    <app-job  [job]="job" (delete)="delete($event) " ></app-job>
+                    <app-job  [job]="job" (delete)="delete($event ? i: -1) " ></app-job>
                 </div>
             </div>
             <ng-template #loggedOut>
@@ -47,4 +47,7 @@
     </div>
 
 </div>
+<footer>
+    <p class="text-center mt-16 text-white font-bold">Done by <a class="hover:text-gray-400 transition-colors" href="https://github.com/angeldev07">Angel Garcia</a></p>
+</footer>
 

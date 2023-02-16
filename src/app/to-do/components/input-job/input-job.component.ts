@@ -11,13 +11,18 @@ export class InputJobComponent {
 
   @Output() jobToDo: EventEmitter<Job> = new EventEmitter<Job>();;
   value = ''
+  done = false;
 
   saveJob() {
     if(this.value.trim().length === 0)
       return
     
-    this.jobToDo.emit({description: this.value, done: false})
+    this.jobToDo.emit({description: this.value, done: this.done})
     this.value = ''
+    this.done = false;
+  }
+  changeState(){
+    this.done = ! this.done
   }
 
 }

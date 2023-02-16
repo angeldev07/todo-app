@@ -9,14 +9,17 @@ import { Job } from '../../interfaces/job.interface';
 })
 export class JobComponent {
   @Input() job! : Job;
-  @Output() delete : EventEmitter<Job> = new EventEmitter();
+  @Output() delete : EventEmitter<boolean> = new EventEmitter();
 
   eliminar() {
-    this.delete.emit(this.job);
+    // si emito true es para eliminar
+    this.delete.emit(true);
   }
 
   changeState() {
     this.job.done = ! this.job.done
+    // si emito false, es para actualizar el localstorage
+    this.delete.emit(false);
   }
 
 }
