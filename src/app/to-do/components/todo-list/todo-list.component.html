@@ -1,7 +1,7 @@
 <div class="">
 
     <div class="mb-8">
-        <h1 class="text-white text-4xl font-bold tracking-title">TODO</h1>
+        <h1 class="text-4xl font-bold text-white tracking-title">TODO</h1>
     </div>
 
     <div class="text-color-dark">
@@ -10,11 +10,11 @@
         </div>
         
         <!-- Contenedor de la lista  -->
-        <div class="shadow-3xl mb-6">
+        <div class="mb-6 shadow-3xl">
             <div *ngIf="allJobList.length > 0; else loggedOut " 
                 cdkDropList (cdkDropListDropped)="drop($event)" 
                 class="listCont bg-item-dark" >
-                <div cdkDrag *ngFor="let job of allJobList; index as i" 
+                <div cdkDrag *ngFor="let job of Jobs; index as i" 
                      class="itemDrag bg-item-dark p-4 border-[#393a4c] border-b rounded-sm text-color-dark" >
                     <app-job  [job]="job" (delete)="delete($event ? i: -1) " ></app-job>
                 </div>
@@ -25,13 +25,13 @@
                 </div>
             </ng-template>
             
-            <div class="flex justify-between py-4 px-5 bg-item-dark text-color-dark  rounded-b-sm">
+            <div class="flex justify-between px-5 py-4 rounded-b-sm bg-item-dark text-color-dark">
                 <span> {{itemsLeft}} </span>
                 <button class="hover:text-[#777a92] transition-colors" (click)="clear()"> Clear Completed</button>
             </div>
         </div>
         
-        <div class="flex justify-center p-3 bg-item-dark text-color-dark rounded-md shadow-xl">
+        <div class="flex justify-center p-3 rounded-md shadow-xl bg-item-dark text-color-dark">
             <button *ngFor="let btn of filterBtns; index as i"
                     (click)="changeToShow(btn)"
                     class="mr-4 transition-colors"
@@ -42,12 +42,12 @@
 
     </div>
 
-    <div class="text-center mt-10 mb-5">
+    <div class="mt-10 mb-5 text-center">
         <span class="text-[#777a92] font-semibold">Drag and Drop to reorder list</span>
     </div>
 
 </div>
 <footer>
-    <p class="text-center mt-16 text-white font-bold">Done by <a class="hover:text-gray-400 transition-colors" href="https://github.com/angeldev07">Angel Garcia</a></p>
+    <p class="mt-16 font-bold text-center text-white">Done by <a class="transition-colors hover:text-gray-400" href="https://github.com/angeldev07">Angel Garcia</a></p>
 </footer>
 
